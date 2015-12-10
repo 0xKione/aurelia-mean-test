@@ -1,0 +1,35 @@
+<template>
+  <div class="page-header">
+    <div class="pull-left" style="cursor: pointer; margin-right: 5px;">
+      <span click.trigger="postService.upvote(post)"><i class="fa fa-chevron-up"></i></span>
+      <span click.trigger="postService.downvote(post)"><i class="fa fa-chevron-down"></i></span>
+    </div>
+    <div>
+      <span style="font-size: 16px; padding-right: 5px; color: #999">${post.upvotes}</span>
+      <span style="font-size: 18px;">${post.title}</span>
+    </div>
+    <div style="margin-top: 10px;" css="margin-left: ${post.upvotes > 9 ? '65px' : '55px'}">
+      ${post.content}
+    </div>
+  </div>
+
+  <div repeat.for="comment of post.comments">
+    <div class="pull-left" style="cursor: pointer; margin-right: 5px;">
+      <span click.trigger="postService.upvote(comment)"><i class="fa fa-chevron-up"></i></span>
+      <span click.trigger="postService.downvote(comment)"><i class="fa fa-chevron-down"></i></span>
+    </div>
+    <div>
+      <span style="font-size: 16px; padding-right: 5px; color: #999">${comment.upvotes}</span>
+      <span>${comment.content}</span>
+    </div>
+  </div>
+
+  <form style="margin-top: 30px;" submit.trigger="postService.addComment(post)">
+    <h3>Add a new comment</h3>
+    <div class="form-group">
+      <textarea style="resize: none; height: 150px;" class="form-control" placeholder="Comment" value.bind="postService.content"></textarea>
+      <br />
+      <button type="submit" class="btn btn-primary">Post</button>
+    </div>
+  </form>
+</template>

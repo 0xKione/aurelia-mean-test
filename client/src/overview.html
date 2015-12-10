@@ -1,0 +1,27 @@
+<template>
+  <div class="page-header">
+    <h2>${heading}</h2>
+  </div>
+  
+  <div repeat.for="post of posts">
+    <div class="pull-left" style="cursor: pointer; margin-right: 5px;">
+      <span click.trigger="postService.upvote(post)"><i class="fa fa-chevron-up"></i></span>
+      <span click.trigger="postService.downvote(post)"><i class="fa fa-chevron-down"></i></span>
+    </div>
+    <div>
+      <span style="font-size: 16px; padding-right: 5px; color: #999">${post.upvotes}</span>
+      <a href.bind="post.link" style="cursor: pointer;">${post.title}</a>
+    </div>
+  </div>
+  
+  <form style="margin-top: 30px;" submit.trigger="postService.addPost()">
+    <h3>Add a new post</h3>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Title" value.bind="postService.title" />
+      <br />
+      <textarea style="resize: none; height: 150px;" class="form-control" placeholder="Content" value.bind="postService.content"></textarea>
+      <br />
+      <button type="submit" class="btn btn-primary">Post</button>
+    </div>
+  </form>
+</template>
