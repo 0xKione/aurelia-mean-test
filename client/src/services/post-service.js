@@ -31,7 +31,7 @@ export class PostService {
   }
 
   getPost(id) {
-    let idx = this.posts.findIndex((post) => post.id === id);
+    let idx = this.posts.findIndex((post) => post.id === Number(id));
     return this.posts[idx];
   }
 
